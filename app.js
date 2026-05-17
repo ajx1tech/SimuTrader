@@ -3,7 +3,7 @@
 // ===================================
 
 // API Configuration
-const API_BASE_URL = 'https://simutrader-backend.onrender.com/';
+const API_BASE_URL = 'https://simutrader-backend.onrender.com';
 let priceUpdateInterval = null;
 
 // Wait for DOM to be fully loaded
