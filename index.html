@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimuTrader - Stock Trading Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>📈 SimuTrader</h1>
+                <p class="tagline">Trading Simulator</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="portfolio">
+                    <span class="icon">💼</span>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#" class="nav-item" data-page="trade">
+                    <span class="icon">💱</span>
+                    <span>Trade</span>
+                </a>
+                <a href="#" class="nav-item" data-page="markets">
+                    <span class="icon">🌐</span>
+                    <span>Markets</span>
+                </a>
+                <a href="#" class="nav-item" data-page="history">
+                    <span class="icon">📜</span>
+                    <span>History</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar">👤</div>
+                    <div class="user-details">
+                        <p class="username">Demo User</p>
+                        <p class="balance">$100,000.00</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h2 class="page-title">Dashboard</h2>
+                    <p class="page-subtitle">Welcome back to your trading dashboard</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search stocks..." class="search-input">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <button class="btn-icon" title="Notifications">
+                        <span>🔔</span>
+                    </button>
+                    <button class="btn-icon" title="Settings">
+                        <span>⚙️</span>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Portfolio Value</span>
+                        <span class="stat-icon">💰</span>
+                    </div>
+                    <div class="stat-value">$125,450.00</div>
+                    <div class="stat-change positive">
+                        <span>↑ $5,450.00 (4.54%)</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Cash Balance</span>
+                        <span class="stat-icon">💵</span>
+                    </div>
+                    <div class="stat-value">$45,230.00</div>
+                    <div class="stat-change neutral">
+                        <span>Available for trading</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Today's P/L</span>
+                        <span class="stat-icon">📈</span>
+                    </div>
+                    <div class="stat-value">$1,234.56</div>
+                    <div class="stat-change positive">
+                        <span>↑ 2.15%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Trades</span>
+                        <span class="stat-icon">🔄</span>
+                    </div>
+                    <div class="stat-value">47</div>
+                    <div class="stat-change neutral">
+                        <span>This month</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Portfolio Chart -->
+                <section class="card chart-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Portfolio Performance</h3>
+                        <div class="card-actions">
+                            <button class="btn-small active">1D</button>
+                            <button class="btn-small">1W</button>
+                            <button class="btn-small">1M</button>
+                            <button class="btn-small">3M</button>
+                            <button class="btn-small">1Y</button>
+                            <button class="btn-small">ALL</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </section>
+                
+                <!-- Trade Simulator Panel -->
+                <section class="card trade-panel">
+                    <div class="card-header">
+                        <h3 class="card-title">Trade Simulator</h3>
+                        <div class="trade-type-toggle">
+                            <button class="toggle-btn active" data-type="buy">Buy</button>
+                            <button class="toggle-btn" data-type="sell">Sell</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="trade-form">
+                            <div class="form-group">
+                                <label for="stock-symbol">Stock Symbol</label>
+                                <input 
+                                    type="text" 
+                                    id="stock-symbol" 
+                                    class="form-input" 
+                                    placeholder="e.g., AAPL"
+                                    autocomplete="off"
+                                >
+                                <div class="stock-info">
+                                    <span class="stock-name">Apple Inc.</span>
+                                    <span class="stock-price">$178.50</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="order-type">Order Type</label>
+                                <select id="order-type" class="form-select">
+                                    <option value="market">Market Order</option>
+                                    <option value="limit">Limit Order</option>
+                                    <option value="stop">Stop Order</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input 
+                                    type="number" 
+                                    id="quantity" 
+                                    class="form-input" 
+                                    placeholder="Number of shares"
+                                    min="1"
+                                    value="1"
+                                >
+                            </div>
+                            
+                            <div class="form-group limit-price-group" style="display: none;">
+                                <label for="limit-price">Limit Price</label>
+                                <input 
+                                    type="number" 
+                                    id="limit-price" 
+                                    class="form-input" 
+                                    placeholder="Price per share"
+                                    step="0.01"
+                                >
+                            </div>
+                            
+                            <div class="trade-summary">
+                                <div class="summary-row">
+                                    <span>Estimated Cost:</span>
+                                    <span class="summary-value">$178.50</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Commission:</span>
+                                    <span class="summary-value">$0.00</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total:</span>
+                                    <span class="summary-value">$178.50</span>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary btn-buy">
+                                <span>🛒</span> Place Buy Order
+                            </button>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Holdings Table -->
+                <section class="card holdings-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Current Holdings</h3>
+                        <button class="btn-text">View All →</button>
+                    </div>
+                    <div class="card-body">
+                        <table class="holdings-table">
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Shares</th>
+                                    <th>Avg Cost</th>
+                                    <th>Current Price</th>
+                                    <th>P/L</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="stock-cell">
+                                            <span class="symbol">AAPL</span>
+                                            <span class="name">Apple Inc.</span>
+                                        </div>
+                                    </td>
+                                    <td>50</td>
+                                    <td>$165.00</td>
+                                    <td>$178.50</td>
+                                    <td class="positive">+$675.00 (8.18%)</td>
+                                    <td>
+                                        <button class="btn-action">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="stock-cell">
+                                            <span class="symbol">GOOGL</span>
+                                            <span class="name">Alphabet Inc.</span>
+                                        </div>
+                                    </td>
+                                    <td>30</td>
+                                    <td>$145.00</td>
+                                    <td>$142.80</td>
+                                    <td class="negative">-$66.00 (-1.52%)</td>
+                                    <td>
+                                        <button class="btn-action">Trade</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="stock-cell">
+                                            <span class="symbol">MSFT</span>
+                                            <span class="name">Microsoft Corp.</span>
+                                        </div>
+                                    </td>
+                                    <td>25</td>
+                                    <td>$370.00</td>
+                                    <td>$380.00</td>
+                                    <td class="positive">+$250.00 (2.70%)</td>
+                                    <td>
+                                        <button class="btn-action">Trade</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Market Movers -->
+                <section class="card movers-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Market Movers</h3>
+                        <div class="card-tabs">
+                            <button class="tab-btn active">Gainers</button>
+                            <button class="tab-btn">Losers</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="movers-list">
+                            <div class="mover-item">
+                                <div class="mover-info">
+                                    <span class="symbol">TSLA</span>
+                                    <span class="name">Tesla Inc.</span>
+                                </div>
+                                <div class="mover-price">
+                                    <span class="price">$245.60</span>
+                                    <span class="change positive">+5.67%</span>
+                                </div>
+                            </div>
+                            <div class="mover-item">
+                                <div class="mover-info">
+                                    <span class="symbol">NVDA</span>
+                                    <span class="name">NVIDIA Corp.</span>
+                                </div>
+                                <div class="mover-price">
+                                    <span class="price">$485.20</span>
+                                    <span class="change positive">+4.23%</span>
+                                </div>
+                            </div>
+                            <div class="mover-item">
+                                <div class="mover-info">
+                                    <span class="symbol">AMD</span>
+                                    <span class="name">AMD Inc.</span>
+                                </div>
+                                <div class="mover-price">
+                                    <span class="price">$165.80</span>
+                                    <span class="change positive">+3.45%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+            
+        </main>
+        
+    
+    <!-- AI Financial Assistant Chat Window -->
+    <div id="aiChatWindow" class="ai-chat-window">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span class="chat-icon">🤖</span>
+                <span>AI Financial Assistant</span>
+            </div>
+            <button class="chat-close-btn" onclick="toggleAIChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message ai-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>Hello! I'm your AI Financial Assistant powered by IBM watsonx.ai. I can help you with:</p>
+                    <ul>
+                        <li>Understanding trading concepts</li>
+                        <li>Analyzing market trends</li>
+                        <li>Portfolio management tips</li>
+                        <li>Financial terminology</li>
+                    </ul>
+                    <p>How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input 
+                type="text" 
+                id="chatInput" 
+                class="chat-input" 
+                placeholder="Ask me anything about trading..."
+                onkeypress="handleChatKeyPress(event)"
+            >
+            <button class="chat-send-btn" onclick="sendChatMessage()">
+                <span>Send</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- AI Chat Toggle Button -->
+    <button class="ai-chat-toggle" onclick="toggleAIChat()" title="AI Financial Assistant">
+        🤖
+    </button>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
