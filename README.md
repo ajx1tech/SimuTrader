@@ -948,9 +948,10 @@ For issues, questions, or contributions:
 
 **Built with ❤️ and IBM Bob**
 Team[Oggy&Bob]:-
-Ajit Sharma
-Ram Gangul
-Atharva Sheshgiri
+
+Ajit Sharma.
+Ram Gangul.
+Atharva Sheshgiri.
 
 [⬆ Back to Top](#-simutrader---stock-trading-simulator)
 
