@@ -238,8 +238,8 @@ NODE_ENV=development
 |----------|-------------|---------|
 | `PORT` | Server port number | `3000` |
 | `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/simutrader` |
-| `WATSONX_API_KEY` | IBM watsonx.ai API key | `BlHa21YzIH3YXUf3eM9mxf2m3z0bMmtwyFBd6ctx_-ht` |
-| `WATSONX_PROJECT_ID` | watsonx.ai project ID | `7971ca05-43d2-493e-a724-3efe1f06f993` |
+| `WATSONX_API_KEY` | IBM watsonx.ai API key | your_api_key |
+| `WATSONX_PROJECT_ID` | watsonx.ai project ID | your_project_id |
 
 ### Getting watsonx.ai Credentials
 
